@@ -1,5 +1,4 @@
 //variables globales esfera
-
 var radio=1
 var divisiones=10
 
@@ -8,9 +7,11 @@ var sx=0.5;
 var sy=0.5;
 var sz=3;
 //variables de rotacion
+
 var Rx=(Math.PI /(2));
 var Ry=-(Math.PI /(3));
-var Rz=Math.PI /(3);
+var Rz= (45*Math.PI /(180));
+
 //variable de transalacion
 var Tx=5.1*radio;
 var Ty=5.9*radio;
@@ -41,32 +42,6 @@ scene.add(camera);
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-//cracion de la esfera 
-
-var geometry = new THREE.SphereGeometry(radio, divisiones, divisiones);
-var material = new THREE.MeshBasicMaterial( {color: 0xfff6ca} );
-var sphere = new THREE.Mesh(geometry, material);
-
-//proceso de escalado
-
-sphere.scale.setX(sx);
-
-sphere.scale.setY(sy);
-
-sphere.scale.setZ(sz);
-
-//proceso de traslacion y rotacion para acomodar
-
-//Rotacion del esfera
-
-sphere.translateY(Ty);
-
-sphere.rotation.x += Rx;
-sphere.rotation.y += Ry;
-
-sphere.translateX(Tx);
-
-
 //luz
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(-1, 2, 4);
@@ -81,7 +56,17 @@ scene.add(axesHelper);
 const gridHelper = new THREE.GridHelper(size, divisions);
 scene.add(gridHelper);
 
+
+//cracion de la esfera 
+
+var geometry = new THREE.SphereGeometry(radio, divisiones, divisiones);
+var material = new THREE.MeshBasicMaterial( {color: 0xfff6ca} );
+var sphere = new THREE.Mesh(geometry, material);
+
+totaltransformaciones(sphere)
+
 scene.add(sphere)
+
 
 //funcion de imagen
 function render() {
@@ -90,3 +75,4 @@ function render() {
 }
 
 render();
+
